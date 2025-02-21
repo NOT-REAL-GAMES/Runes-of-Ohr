@@ -179,7 +179,7 @@ void CTFDemoSupport::Update( float frametime )
 		if ( ds_screens.GetBool() )
 		{
 			engine->TakeScreenshot( m_szFilename, m_szFolder );
-			Notify( "(Demo Support) Screenshot saved\n" );
+			Notify((char*)"(Demo Support) Screenshot saved\n" );
 		}
 	}
 }
@@ -451,7 +451,7 @@ bool CTFDemoSupport::StartRecording( void )
 	// are we already recording?
 	if ( m_bRecording )
 	{
-		Notify( "(Demo Support) Already recording\n" );
+		Notify((char*)"(Demo Support) Already recording\n" );
 		return false;
 	}
 
@@ -494,7 +494,7 @@ bool CTFDemoSupport::StartRecording( void )
 
 	if ( !engine->StartDemoRecording( m_szFilename, m_szFolder ) )
 	{
-		Notify( "(Demo Support) Unable to start recording\n" );
+		Notify((char*)"(Demo Support) Unable to start recording\n" );
 		return false;
 	}
 

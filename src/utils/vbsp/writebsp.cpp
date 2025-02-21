@@ -997,7 +997,7 @@ void SetLightStyles (void)
 	{
 		e = &entities[i];
 
-		t = ValueForKey (e, "classname");
+		t = ValueForKey (e, (char*)"classname");
 		if (Q_strncasecmp (t, "light", 5))
 			continue;
 
@@ -1005,7 +1005,7 @@ void SetLightStyles (void)
 		if (!Q_strcasecmp (t, "light_dynamic"))
 			continue;
 
-		t = ValueForKey (e, "targetname");
+		t = ValueForKey (e, (char*)"targetname");
 		if (!t[0])
 			continue;
 		
@@ -1021,7 +1021,7 @@ void SetLightStyles (void)
 			stylenum++;
 		}
 		sprintf (value, "%i", 32 + j);
-		char *pCurrentStyle = ValueForKey( e, "style" );
+		char *pCurrentStyle = ValueForKey( e, (char*)"style" );
 		// the designer has set a default lightstyle as well as making the light switchable
 		if ( pCurrentStyle )
 		{
@@ -1207,7 +1207,7 @@ void EnsurePresenceOfWaterLODControlEntity( void )
 	{
 		entity_t *e = &entities[i];
 
-		const char *pClassName = ValueForKey( e, "classname" );
+		const char *pClassName = ValueForKey( e, (char*)"classname" );
 		if( !Q_stricmp( pClassName, "water_lod_control" ) )
 		{
 			// Found one!!!!
@@ -1537,7 +1537,7 @@ void ComputeBoundsNoSkybox( )
 	// Add the bounds to the worldspawn data
 	for (int i = 0; i < num_entities; ++i)
 	{
-		char* pEntity = ValueForKey(&entities[i], "classname");
+		char* pEntity = ValueForKey(&entities[i], (char*)"classname");
 		if (!strcmp(pEntity, "worldspawn"))
 		{
 			char	string[32];

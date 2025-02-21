@@ -463,16 +463,16 @@ void ProcessSkyCameras()
 	for (i = 0; i < num_entities; ++i)
 	{
 		entity_t *e = &entities[i];
-		const char *name = ValueForKey (e, "classname");
+		const char *name = ValueForKey (e, (char*)"classname");
 		if (stricmp (name, "sky_camera"))
 			continue;
 
 		Vector origin;
-		GetVectorForKey( e, "origin", origin );
+		GetVectorForKey( e, (char*)"origin", origin );
 		int node = PointLeafnum( origin );
 		int area = -1;
 		if (node >= 0 && node < numleafs) area = dleafs[node].area;
-		float scale = FloatForKey( e, "scale" );
+		float scale = FloatForKey( e, (char*)"scale" );
 
 		if (scale > 0.0f)
 		{
@@ -674,7 +674,7 @@ entity_t *EntityForModel (int modnum)
 	// search the entities for one using modnum
 	for (i=0 ; i<num_entities ; i++)
 	{
-		s = ValueForKey (&entities[i], "model");
+		s = ValueForKey (&entities[i], (char*)"model");
 		if (!strcmp (s, name))
 			return &entities[i];
 	}
@@ -708,7 +708,7 @@ void MakePatches (void)
 
 		// bmodels with origin brushes need to be offset into their
 		// in-use position
-		GetVectorForKey (ent, "origin", origin);
+		GetVectorForKey (ent, (char*)"origin", origin);
 
 		for (j=0 ; j<mod->numfaces ; j++)
 		{
@@ -2280,7 +2280,7 @@ void VRAD_LoadBSP( char const *pFilename )
 
 	// Dump raytracer for glview
 	if ( g_bDumpRtEnv )
-		WriteRTEnv("trace.txt");
+		WriteRTEnv((char*)"trace.txt");
 
 	// Build acceleration structure
 	printf ( "Setting up ray-trace acceleration structure... ");

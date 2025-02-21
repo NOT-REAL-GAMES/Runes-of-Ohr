@@ -861,7 +861,7 @@ void BuildGroup::PanelAdded(Panel *panel)
 	int c = _panelDar.Count();
 	for ( int i = 0; i < c; ++i )
 	{
-		if ( _panelDar[ i ] == temp )
+		if ( (vgui::PHandle)_panelDar[ i ] == (vgui::Panel *)temp )
 		{
 			return;
 		}

@@ -39,9 +39,9 @@ END_DATADESC()
 // array of friend names
 char *CNPCSimpleTalker::m_szFriends[TLK_CFRIENDS] = 
 {
-	"NPC_barney",
-	"NPC_scientist",
-	"NPC_sitting_scientist",
+	(char*)"NPC_barney",
+	(char*)"NPC_scientist",
+	(char*)"NPC_sitting_scientist",
 	NULL,
 };
 

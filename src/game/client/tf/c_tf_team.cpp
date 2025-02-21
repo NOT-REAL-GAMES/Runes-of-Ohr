@@ -91,7 +91,7 @@ char* C_TFTeam::Get_Name( void )
 {
 	// Use Get_Localized_Name() instead
 	AssertMsg( false, "Use Get_Localized_Name() instead" );
-	return "";
+	return (char*)"";
 }
 
 //-----------------------------------------------------------------------------
@@ -123,7 +123,7 @@ void C_TFTeam::UpdateTeamName( void )
 				wchar_t *pFormat = g_pVGuiLocalize->Find( "#TF_Team_PartyLeader" );
 				if ( !pFormat )
 				{
-					pFormat = L"%s";
+					pFormat = (wchar_t*)L"%s";
 				}
 
 				if ( g_TF_PR->GetEventTeamStatus() )

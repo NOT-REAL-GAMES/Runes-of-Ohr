@@ -1362,9 +1362,9 @@ ConversionErrorType ImgUtl_ConvertTGAToVTF(const char *tgaPath, int nMaxWidth/*=
 	char *vtfParams[4];
 
 	// the 0th entry is skipped cause normally thats the program name.
-	vtfParams[0] = "";
-	vtfParams[1] = "-quiet";
-	vtfParams[2] = "-dontusegamedir";
+	vtfParams[0] = (char*)"";
+	vtfParams[1] = (char*)"-quiet";
+	vtfParams[2] = (char*)"-dontusegamedir";
 	vtfParams[3] = (char *)tgaPath;
 
 	// call vtex to do the conversion.

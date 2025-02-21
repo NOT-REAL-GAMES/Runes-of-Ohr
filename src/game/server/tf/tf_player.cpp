@@ -457,7 +457,7 @@ IMPLEMENT_SERVERCLASS_ST_NOBASE( CTFRagdoll, DT_TFRagdoll )
 	SendPropInt( SENDINFO( m_iDamageCustom ) ),
 	SendPropInt( SENDINFO( m_iTeam ), 3, SPROP_UNSIGNED ),
 	SendPropInt( SENDINFO( m_iClass ), 4, SPROP_UNSIGNED ),			
-	SendPropUtlVector( SENDINFO_UTLVECTOR( m_hRagWearables ), 8, SendPropEHandle( NULL, 0 ) ),
+	SendPropUtlVector((char*)SENDINFO_UTLVECTOR( m_hRagWearables ), 8, SendPropEHandle( NULL, 0 ) ),
 	SendPropBool( SENDINFO( m_bGoldRagdoll ) ),
 	SendPropBool( SENDINFO( m_bIceRagdoll ) ),
 	SendPropBool( SENDINFO( m_bCritOnHardHit ) ),

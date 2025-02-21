@@ -41,12 +41,12 @@ enum
 
 char *pszMineStateNames[] =
 {
-	"Dormant",
-	"Deploy",
-	"Captive",
-	"Armed",
-	"Triggered",
-	"Launched",
+	(char*)"Dormant",
+	(char*)"Deploy",
+	(char*)"Captive",
+	(char*)"Armed",
+	(char*)"Triggered",
+	(char*)"Launched",
 };
 
 // memdbgon must be the last include file in a .cpp file!!!

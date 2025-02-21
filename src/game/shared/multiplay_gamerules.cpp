@@ -1577,10 +1577,10 @@ ConVarRef suitcharger( "sk_suitcharger" );
 					VoiceCommandMenuItem_t item;
 
 #ifndef CLIENT_DLL
-					int iConcept = GetMPConceptIndexFromString( menuitem->GetString( "concept", "" ) );
+					int iConcept = GetMPConceptIndexFromString( menuitem->GetString( "ai_concept", "" ) );
 					if ( iConcept == MP_CONCEPT_NONE )
 					{
-						Warning( "Voicecommand script attempting to use unknown concept. Need to define new concepts in code. ( %s )\n", menuitem->GetString( "concept", "" ) );
+						Warning( "Voicecommand script attempting to use unknown concept. Need to define new concepts in code. ( %s )\n", menuitem->GetString( "ai_concept", "" ) );
 					}
 					item.m_iConcept = iConcept;
 

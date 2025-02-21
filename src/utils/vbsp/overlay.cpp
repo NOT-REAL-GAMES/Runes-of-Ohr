@@ -29,47 +29,47 @@ int Overlay_GetFromEntity( entity_t *pMapEnt )
 	// Get the overlay data.
 	pMapOverlay->nId = g_aMapOverlays.Count() - 1;
 
-	if ( ValueForKey( pMapEnt, "targetname" )[ 0 ] != '\0' )
+	if ( ValueForKey( pMapEnt, (char*)"targetname" )[ 0 ] != '\0' )
 	{
 		// Overlay has a name, remember it's ID for accessing
 		iAccessorID = pMapOverlay->nId;
 	}
 
-	pMapOverlay->flU[0] = FloatForKey( pMapEnt, "StartU" );
-	pMapOverlay->flU[1] = FloatForKey( pMapEnt, "EndU" );
-	pMapOverlay->flV[0] = FloatForKey( pMapEnt, "StartV" );
-	pMapOverlay->flV[1] = FloatForKey( pMapEnt, "EndV" );
+	pMapOverlay->flU[0] = FloatForKey( pMapEnt, (char*)"StartU" );
+	pMapOverlay->flU[1] = FloatForKey( pMapEnt, (char*)"EndU" );
+	pMapOverlay->flV[0] = FloatForKey( pMapEnt, (char*)"StartV" );
+	pMapOverlay->flV[1] = FloatForKey( pMapEnt, (char*)"EndV" );
 
-	pMapOverlay->flFadeDistMinSq = FloatForKey( pMapEnt, "fademindist" );
+	pMapOverlay->flFadeDistMinSq = FloatForKey( pMapEnt, (char*)"fademindist" );
 	if ( pMapOverlay->flFadeDistMinSq > 0 )
 	{
 		pMapOverlay->flFadeDistMinSq *= pMapOverlay->flFadeDistMinSq;
 	}
 
-	pMapOverlay->flFadeDistMaxSq = FloatForKey( pMapEnt, "fademaxdist" );
+	pMapOverlay->flFadeDistMaxSq = FloatForKey( pMapEnt, (char*)"fademaxdist" );
 	if ( pMapOverlay->flFadeDistMaxSq > 0 )
 	{
 		pMapOverlay->flFadeDistMaxSq *= pMapOverlay->flFadeDistMaxSq;
 	}
 
-	GetVectorForKey( pMapEnt, "BasisOrigin", pMapOverlay->vecOrigin );
+	GetVectorForKey( pMapEnt, (char*)"BasisOrigin", pMapOverlay->vecOrigin );
 
-	pMapOverlay->m_nRenderOrder = IntForKey( pMapEnt, "RenderOrder" );
+	pMapOverlay->m_nRenderOrder = IntForKey( pMapEnt, (char*)"RenderOrder" );
 	if ( pMapOverlay->m_nRenderOrder < 0 || pMapOverlay->m_nRenderOrder >= OVERLAY_NUM_RENDER_ORDERS )
-		Error( "Overlay (%s) at %f %f %f has invalid render order (%d).\n", ValueForKey( pMapEnt, "material" ),
+		Error( "Overlay (%s) at %f %f %f has invalid render order (%d).\n", ValueForKey( pMapEnt, (char*)"material" ),
 				pMapOverlay->vecOrigin.x, pMapOverlay->vecOrigin.y, pMapOverlay->vecOrigin.z,
 				pMapOverlay->m_nRenderOrder );
 
-	GetVectorForKey( pMapEnt, "uv0", pMapOverlay->vecUVPoints[0] );
-	GetVectorForKey( pMapEnt, "uv1", pMapOverlay->vecUVPoints[1] );
-	GetVectorForKey( pMapEnt, "uv2", pMapOverlay->vecUVPoints[2] );
-	GetVectorForKey( pMapEnt, "uv3", pMapOverlay->vecUVPoints[3] );
+	GetVectorForKey( pMapEnt, (char*)"uv0", pMapOverlay->vecUVPoints[0] );
+	GetVectorForKey( pMapEnt, (char*)"uv1", pMapOverlay->vecUVPoints[1] );
+	GetVectorForKey( pMapEnt, (char*)"uv2", pMapOverlay->vecUVPoints[2] );
+	GetVectorForKey( pMapEnt, (char*)"uv3", pMapOverlay->vecUVPoints[3] );
 
-	GetVectorForKey( pMapEnt, "BasisU", pMapOverlay->vecBasis[0] );
-	GetVectorForKey( pMapEnt, "BasisV", pMapOverlay->vecBasis[1] );
-	GetVectorForKey( pMapEnt, "BasisNormal", pMapOverlay->vecBasis[2] );
+	GetVectorForKey( pMapEnt, (char*)"BasisU", pMapOverlay->vecBasis[0] );
+	GetVectorForKey( pMapEnt, (char*)"BasisV", pMapOverlay->vecBasis[1] );
+	GetVectorForKey( pMapEnt, (char*)"BasisNormal", pMapOverlay->vecBasis[2] );
 
-	const char *pMaterialName = ValueForKey( pMapEnt, "material" );
+	const char *pMaterialName = ValueForKey( pMapEnt, (char*)"material" );
 	Assert( strlen( pMaterialName ) < OVERLAY_MAP_STRLEN );
 	if ( strlen( pMaterialName ) >= OVERLAY_MAP_STRLEN )
 	{
@@ -79,7 +79,7 @@ int Overlay_GetFromEntity( entity_t *pMapEnt )
 	strcpy( pMapOverlay->szMaterialName, pMaterialName );	
 
 	// Convert the sidelist to side id(s).
-	const char *pSideList = ValueForKey( pMapEnt, "sides" );
+	const char *pSideList = ValueForKey( pMapEnt, (char*)"sides" );
 	char *pTmpList = ( char* )_alloca( strlen( pSideList ) + 1 );
 	strcpy( pTmpList, pSideList );
 	const char *pScan = strtok( pTmpList, " " );

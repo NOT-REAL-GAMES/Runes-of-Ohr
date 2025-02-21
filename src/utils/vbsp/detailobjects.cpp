@@ -133,7 +133,7 @@ static void ParseDetailGroup( int detailId, KeyValues* pGroupKeyValues )
 			DetailModel_t &model = group.m_Models[i];
 
 			model.m_ModelName = pIter->GetString( "model", 0 );
-			if (model.m_ModelName != UTL_INVAL_SYMBOL)
+			if (model.m_ModelName != (CUtlSymbol)UTL_INVAL_SYMBOL)
 			{
 				model.m_Type = DETAIL_PROP_TYPE_MODEL;
 			}
@@ -285,10 +285,10 @@ static const char *FindDetailVBSPName( void )
 {
 	for( int i = 0; i < num_entities; i++ )
 	{
-		char* pEntity = ValueForKey( &entities[i], "classname" );
+		char* pEntity = ValueForKey( &entities[i], (char*)"classname" );
 		if ( !strcmp( pEntity, "worldspawn" ) )
 		{
-			const char *pDetailVBSP = ValueForKey( &entities[i], "detailvbsp" );
+			const char *pDetailVBSP = ValueForKey( &entities[i], (char*)"detailvbsp" );
 			if ( !pDetailVBSP || !pDetailVBSP[0] ) 
 			{
 				pDetailVBSP = "detail.vbsp";
@@ -904,13 +904,13 @@ void EmitDetailModels()
 	Vector2D tex[2];
 	for (int i = 0; i < num_entities; ++i)
 	{
-		char* pEntity = ValueForKey(&entities[i], "classname");
+		char* pEntity = ValueForKey(&entities[i], (char*)"classname");
 		if (!strcmp(pEntity, "detail_prop") || !strcmp(pEntity, "prop_detail"))
 		{
-			GetVectorForKey( &entities[i], "origin", origin );
-			GetAnglesForKey( &entities[i], "angles", angles );
-			char* pModelName = ValueForKey( &entities[i], "model" );
-			int nOrientation = IntForKey( &entities[i], "detailOrientation" );
+			GetVectorForKey( &entities[i], (char*)"origin", origin );
+			GetAnglesForKey( &entities[i], (char*)"angles", angles );
+			char* pModelName = ValueForKey( &entities[i], (char*)"model" );
+			int nOrientation = IntForKey( &entities[i], (char*)"detailOrientation" );
 
 			AddDetailToLump( pModelName, origin, angles, nOrientation );
 
@@ -921,14 +921,14 @@ void EmitDetailModels()
 
 		if (!strcmp(pEntity, "prop_detail_sprite"))
 		{
-			GetVectorForKey( &entities[i], "origin", origin );
-			GetAnglesForKey( &entities[i], "angles", angles );
-			int nOrientation = IntForKey( &entities[i], "detailOrientation" );
-			GetVector2DForKey( &entities[i], "position_ul", pos[0] );
-			GetVector2DForKey( &entities[i], "position_lr", pos[1] );
-			GetVector2DForKey( &entities[i], "tex_ul", tex[0] );
-			GetVector2DForKey( &entities[i], "tex_size", tex[1] );
-			float flTextureSize = FloatForKey( &entities[i], "tex_total_size" );
+			GetVectorForKey( &entities[i], (char*)"origin", origin );
+			GetAnglesForKey( &entities[i], (char*)"angles", angles );
+			int nOrientation = IntForKey( &entities[i], (char*)"detailOrientation" );
+			GetVector2DForKey( &entities[i], (char*)"position_ul", pos[0] );
+			GetVector2DForKey( &entities[i], (char*)"position_lr", pos[1] );
+			GetVector2DForKey( &entities[i], (char*)"tex_ul", tex[0] );
+			GetVector2DForKey( &entities[i], (char*)"tex_size", tex[1] );
+			float flTextureSize = FloatForKey( &entities[i], (char*)"tex_total_size" );
 
 			tex[1].x += tex[0].x - 0.5f;
 			tex[1].y += tex[0].y - 0.5f;

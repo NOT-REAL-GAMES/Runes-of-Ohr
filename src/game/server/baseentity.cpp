@@ -5234,7 +5234,7 @@ void CBaseEntity::PrecacheSoundHelper( const char *pName )
 		return;
 	}
 
-	if ( UTL_INVAL_SYMBOL == g_ModelSoundsSymbolHelper.Find( pName ) )
+	if ( (CUtlSymbol)UTL_INVAL_SYMBOL == g_ModelSoundsSymbolHelper.Find( pName ) )
 	{
 		g_ModelSoundsSymbolHelper.AddString( pName );
 
@@ -7665,7 +7665,7 @@ void CBaseEntity::DispatchResponse( const char *conceptName )
 
 	AI_CriteriaSet set;
 	// Always include the concept name
-	set.AppendCriteria( "concept", conceptName, CONCEPT_WEIGHT );
+	set.AppendCriteria( "ai_concept", conceptName, CONCEPT_WEIGHT );
 	// Let NPC fill in most match criteria
 	ModifyOrAppendCriteria( set );
 

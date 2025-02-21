@@ -887,7 +887,7 @@ void CPointCommentaryNode::Spawn( void )
 	char *szModel = (char *)STRING( GetModelName() );
 	if (!szModel || !*szModel)
 	{
-		szModel = "models/extras/info_speech.mdl";
+		szModel = (char*)"models/extras/info_speech.mdl";
 		SetModelName( AllocPooledString(szModel) );
 	}
 

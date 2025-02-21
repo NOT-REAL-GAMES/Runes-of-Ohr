@@ -123,7 +123,7 @@ void CBuyMenu::OnKeyCodePressed( vgui::KeyCode code )
 		Panel *pSubPanel = ( GetCurrentSubPanel() ? GetCurrentSubPanel() : m_pMainMenu );
 
 		CUtlSortVector< SortedPanel_t, CSortedPanelYLess > vecSortedButtons;
-		VguiPanelGetSortedChildButtonList( pSubPanel, (void*)&vecSortedButtons, "&", 0 );
+		VguiPanelGetSortedChildButtonList( pSubPanel, (void*)&vecSortedButtons, (char*)"&", 0 );
 
 		if ( VguiPanelNavigateSortedChildButtonList( (void*)&vecSortedButtons, nDir ) != -1 )
 		{

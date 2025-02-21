@@ -756,11 +756,11 @@ qboolean FloodEntities (tree_t *tree)
 
 	for (i=1 ; i<num_entities ; i++)
 	{
-		GetVectorForKey (&entities[i], "origin", origin);
+		GetVectorForKey (&entities[i], (char*)"origin", origin);
 		if (VectorCompare(origin, vec3_origin))
 			continue;
 
-		cl = ValueForKey (&entities[i], "classname");
+		cl = ValueForKey (&entities[i], (char*)"classname");
 
 		origin[2] += 1;	// so objects on floor are ok
 

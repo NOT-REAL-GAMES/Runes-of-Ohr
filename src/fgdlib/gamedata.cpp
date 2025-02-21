@@ -93,26 +93,26 @@ static bool DoGetToken(TokenReader &tr, char **ppszStore, int nSize, trtoken_t t
 		{
 			case IDENT:
 			{
-				pszTokenName = "identifier";
+				pszTokenName = (char*)"identifier";
 				break;
 			}
 
 			case INTEGER:
 			{
-				pszTokenName = "integer";
+				pszTokenName = (char*)"integer";
 				break;
 			}
 
 			case STRING:
 			{
-				pszTokenName = "string";
+				pszTokenName = (char*)"string";
 				break;
 			}
 
 			case OPERATOR:
 			default:
 			{
-				pszTokenName = "symbol";
+				pszTokenName = (char*)"symbol";
 				break;
 			}
 		}

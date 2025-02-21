@@ -2409,11 +2409,11 @@ void CTFFlameThrower::StartFlame()
 		}
 		else
 		{
-			char *pchFireHitSound = "Weapon_FlameThrower.FireHit";
+			char *pchFireHitSound = (char*)"Weapon_FlameThrower.FireHit";
 
 			if ( GetFlameThrowerMode() == TF_FLAMETHROWER_MODE_RAINBOW )
 			{
-				pchFireHitSound = "Weapon_Rainblower.FireHit";
+				pchFireHitSound = (char*)"Weapon_Rainblower.FireHit";
 			}
 
 			CLocalPlayerFilter filter;

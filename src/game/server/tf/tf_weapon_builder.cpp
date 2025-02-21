@@ -753,19 +753,19 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 				{
 					if ( RandomInt(0,3) == 0 )
 					{
-						pVoicePakString = "PSap.AttachedPW";
+						pVoicePakString = (char*)"PSap.AttachedPW";
 						SetWheatleyState( TF_PSAPSTATE_WAITINGHACK );
 					}
 					else 
 					{
-						pVoicePakString = "PSap.Attached";
+						pVoicePakString = (char*)"PSap.Attached";
 						SetWheatleyState( TF_PSAPSTATE_WAITINGHACKPW );
 					}
 					m_flNextVoicePakIdleStartTime = gpGlobals->curtime + 0.2;
 				}
 				else
 				{
-					pVoicePakString = "PSap.Hacking";
+					pVoicePakString = (char*)"PSap.Hacking";
 					SetWheatleyState( TF_PSAPSTATE_IDLE );
 					m_flNextVoicePakIdleStartTime = gpGlobals->curtime + GetWheatleyIdleWait();
 				}
@@ -776,11 +776,11 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 					if ( m_hLastSappedBuilding && m_hLastSappedBuilding.Get() )
 					{
 						//Building Alive, Sapper died
-						pVoicePakString = "PSap.Death";
+						pVoicePakString = (char*)"PSap.Death";
 					}
 					else
 					{
-						pVoicePakString = "PSap.HackedLoud";
+						pVoicePakString = (char*)"PSap.HackedLoud";
 					}
 					
 					if ( RandomInt( 0, 3 ) == 0 )
@@ -849,11 +849,11 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 				SetWheatleyState( TF_PSAPSTATE_IDLE );
 				if ( IsWheatleyTalking() )
 				{
-					pVoicePakString = "PSap.HackedLoud";
+					pVoicePakString = (char*)"PSap.HackedLoud";
 				}
 				else
 				{
-					pVoicePakString = "PSap.Hacked";
+					pVoicePakString = (char*)"PSap.Hacked";
 				}
 				if ( RandomInt( 0, 3 ) == 0 )
 				{
@@ -871,7 +871,7 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 			{
 				bEmitAll = true;
 				SetWheatleyState( TF_PSAPSTATE_IDLE );
-				pVoicePakString = "PSap.HackingPW";
+				pVoicePakString = (char*)"PSap.HackingPW";
 				m_flNextVoicePakIdleStartTime = gpGlobals->curtime + GetWheatleyIdleWait();
 			}
 			//Waiting to start regular hacking vo
@@ -881,11 +881,11 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 				SetWheatleyState( TF_PSAPSTATE_IDLE );
 				if ( RandomInt( 0, 2 ) == 0 )
 				{
-					pVoicePakString = "PSap.HackingShort";
+					pVoicePakString = (char*)"PSap.HackingShort";
 				}
 				else
 				{
-					pVoicePakString = "PSap.Hacking";
+					pVoicePakString = (char*)"PSap.Hacking";
 				}
 				m_flNextVoicePakIdleStartTime = gpGlobals->curtime + GetWheatleyIdleWait();
 			}
@@ -894,7 +894,7 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 			{
 				bEmitAll = true;
 				SetWheatleyState( TF_PSAPSTATE_IDLE );
-				pVoicePakString = "PSap.HackedFollowup";
+				pVoicePakString = (char*)"PSap.HackedFollowup";
 				m_flNextVoicePakIdleStartTime = gpGlobals->curtime + GetWheatleyIdleWait();
 			}
 			//If Wheatley's talking, skip & check again later
@@ -909,7 +909,7 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 				switch ( m_iWheatleyVOSequenceOffset )
 				{
 				case 0:
-					pVoicePakString = "PSap.IdleHack02";
+					pVoicePakString = (char*)"PSap.IdleHack02";
 					m_iWheatleyVOSequenceOffset++;
 					break;
 				default:
@@ -925,12 +925,12 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 				switch ( m_iWheatleyVOSequenceOffset )
 				{
 				case 0:
-					pVoicePakString = "PSap.IdleKnife02";
+					pVoicePakString = (char*)"PSap.IdleKnife02";
 					m_iWheatleyVOSequenceOffset++;
 					m_flNextVoicePakIdleStartTime = gpGlobals->curtime + 0.3;
 					break;
 				case 1:
-					pVoicePakString = "PSap.IdleKnife03";
+					pVoicePakString = (char*)"PSap.IdleKnife03";
 					m_iWheatleyVOSequenceOffset++;
 					m_flNextVoicePakIdleStartTime = gpGlobals->curtime + GetWheatleyIdleWait();
 					break;
@@ -947,7 +947,7 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 				switch ( m_iWheatleyVOSequenceOffset )
 				{
 				case 0:
-					pVoicePakString = "PSap.IdleHarmless02";
+					pVoicePakString = (char*)"PSap.IdleHarmless02";
 					m_iWheatleyVOSequenceOffset++;
 					m_flNextVoicePakIdleStartTime = gpGlobals->curtime + GetWheatleyIdleWait();
 					break;
@@ -963,13 +963,13 @@ void CTFWeaponBuilder::WheatleySapperIdle( CTFPlayer *pOwner )
 			{
 				if ( RandomInt(0,1) == 0 )
 				{
-					pVoicePakString = "PSap.Sneak";
+					pVoicePakString = (char*)"PSap.Sneak";
 				}
 				m_flNextVoicePakIdleStartTime = gpGlobals->curtime + GetWheatleyIdleWait();
 			}
 			else if ( m_iSapState == TF_PSAPSTATE_IDLE )
 			{
-				pVoicePakString = "PSap.Idle";
+				pVoicePakString = (char*)"PSap.Idle";
 				bNoRepeats = true;
 				m_flNextVoicePakIdleStartTime = gpGlobals->curtime + GetWheatleyIdleWait();
 			}

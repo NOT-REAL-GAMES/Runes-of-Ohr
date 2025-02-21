@@ -38,7 +38,7 @@ BEGIN_DATADESC( CSpeaker )
 	DEFINE_KEYFIELD( m_delayMin, FIELD_FLOAT, "delaymin" ),
 	DEFINE_KEYFIELD( m_delayMax, FIELD_FLOAT, "delaymax" ),
 	DEFINE_KEYFIELD( m_iszRuleScriptFile, FIELD_STRING, "rulescript" ),
-	DEFINE_KEYFIELD( m_iszConcept, FIELD_STRING, "concept" ),
+	DEFINE_KEYFIELD( m_iszConcept, FIELD_STRING, "ai_concept" ),
 
 	// Needs to be set up in the Activate methods of derived classes
 	//DEFINE_CUSTOM_FIELD( m_pInstancedResponseSystem, responseSystemSaveRestoreOps ),
@@ -65,10 +65,10 @@ void CSpeaker::Spawn( void )
 		return;
 	}
 
-//	const char *concept = (const char *)STRING( m_iszConcept );
-//	if ( Q_strlen( concept ) < 1 )
+//	const char *ai_concept = (const char *)STRING( m_iszConcept );
+//	if ( Q_strlen( ai_concept ) < 1 )
 //	{
-//		Warning( "'speaker' entity using rule set %s with empty concept string\n", soundfile );
+//		Warning( "'speaker' entity using rule set %s with empty ai_concept string\n", soundfile );
 //	}
 
     SetSolid( SOLID_NONE );

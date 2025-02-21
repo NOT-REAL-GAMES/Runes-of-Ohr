@@ -292,7 +292,7 @@ void CClassMenu::OnKeyCodePressed(KeyCode code)
 	else if ( nDir != 0 )
 	{
 		CUtlSortVector< SortedPanel_t, CSortedPanelYLess > vecSortedButtons;
-		VguiPanelGetSortedChildButtonList( this, (void*)&vecSortedButtons, "&", 0 );
+		VguiPanelGetSortedChildButtonList( this, (void*)&vecSortedButtons, (char*)"&", 0 );
 
 		int nNewArmed = VguiPanelNavigateSortedChildButtonList( (void*)&vecSortedButtons, nDir );
 

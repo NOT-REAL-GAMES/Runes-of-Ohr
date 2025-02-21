@@ -298,7 +298,7 @@ bool CManifest::LoadSubMaps( CMapFile *pMapFile, const char *pszFileName )
 	memset( InstanceEntity, 0, sizeof( *InstanceEntity ) );
 
 	InstanceEntity->origin.Init( 0.0f, 0.0f, 0.0f );
-	pEPair = CreateEPair( "classname", "worldspawn" );
+	pEPair = CreateEPair((char*)"classname", (char*)"worldspawn" );
 	pEPair->next = InstanceEntity->epairs;
 	InstanceEntity->epairs = pEPair;
 
@@ -316,28 +316,28 @@ bool CManifest::LoadSubMaps( CMapFile *pMapFile, const char *pszFileName )
 			memset( InstanceEntity, 0, sizeof( *InstanceEntity ) );
 			InstanceEntity->origin.Init( 0.0f, 0.0f, 0.0f );
 
-			pEPair = CreateEPair( "angles", "0 0 0" );
+			pEPair = CreateEPair((char*)"angles", (char*)"0 0 0" );
 			pEPair->next = InstanceEntity->epairs;
 			InstanceEntity->epairs = pEPair;
 
 			char temp[ 128 ];
 			sprintf( temp, "%d", GameData::NAME_FIXUP_NONE );
 
-			pEPair = CreateEPair( "fixup_style", temp );
+			pEPair = CreateEPair((char*)"fixup_style", temp );
 			pEPair->next = InstanceEntity->epairs;
 			InstanceEntity->epairs = pEPair;
 
-			pEPair = CreateEPair( "classname", "func_instance" );
+			pEPair = CreateEPair((char*)"classname", (char*)"func_instance" );
 			pEPair->next = InstanceEntity->epairs;
 			InstanceEntity->epairs = pEPair;
 
-			pEPair = CreateEPair( "file", m_Maps[ i ]->m_RelativeMapFileName );
+			pEPair = CreateEPair((char*)"file", m_Maps[ i ]->m_RelativeMapFileName );
 			pEPair->next = InstanceEntity->epairs;
 			InstanceEntity->epairs = pEPair;
 
 			if ( m_Maps[ i ]->m_bTopLevelMap == true )
 			{
-				pEPair = CreateEPair( "toplevel", "1" );
+				pEPair = CreateEPair((char*)"toplevel", (char*)"1" );
 				pEPair->next = InstanceEntity->epairs;
 				InstanceEntity->epairs = pEPair;
 			}

@@ -26,7 +26,8 @@ bool LoadFileIntoBuffer( const char *pFileName, CUtlBuffer &buf )
 	struct	_stat statBuf;
 	if( _stat( pFileName, &statBuf ) != 0 )
 	{
-		goto error;
+		printf("Can't find file %s\n", pFileName);
+		return false;
 	}
 
 	buf.EnsureCapacity( statBuf.st_size );
@@ -34,7 +35,8 @@ bool LoadFileIntoBuffer( const char *pFileName, CUtlBuffer &buf )
 	fp = fopen( pFileName, "rb" );
 	if( !fp )
 	{
-		goto error;
+		printf("Can't find file %s\n", pFileName);
+		return false;
 	}
 	
 	int nBytesRead = fread( buf.Base(), 1, statBuf.st_size, fp );
@@ -43,9 +45,6 @@ bool LoadFileIntoBuffer( const char *pFileName, CUtlBuffer &buf )
 	buf.SeekPut( CUtlBuffer::SEEK_HEAD, nBytesRead );
 	return true;
 
-error:
-	printf( "Can't find file %s\n", pFileName );
-	return false;
 }
 
 char const * ResourceToString( uint32 uiResType )

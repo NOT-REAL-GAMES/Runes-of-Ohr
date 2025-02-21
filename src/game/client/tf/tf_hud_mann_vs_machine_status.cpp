@@ -1352,10 +1352,10 @@ void CWaveCompleteSummaryPanel::OnTick( void )
 	switch ( m_eState )
 	{
 	case CREDITS_COLLECT:
-		StateUpdateValue ( m_pCreditContainerPanel, CREDITS_COLLECTED_STR, CREDITS_COLLECTED_TIME, m_fStateRunningTime, CREDITS_MISSED, m_nCreditsCollected );
+		StateUpdateValue ( m_pCreditContainerPanel, (char*)CREDITS_COLLECTED_STR, CREDITS_COLLECTED_TIME, m_fStateRunningTime, CREDITS_MISSED, m_nCreditsCollected );
 		break;
 	case CREDITS_MISSED:
-		StateUpdateValue ( m_pCreditContainerPanel, CREDITS_MISSED_STR, CREDITS_MISSED_TIME, m_fStateRunningTime, RATING_LABEL, m_nCreditsMissed );
+		StateUpdateValue ( m_pCreditContainerPanel, (char*)CREDITS_MISSED_STR, CREDITS_MISSED_TIME, m_fStateRunningTime, RATING_LABEL, m_nCreditsMissed );
 		break;
 	case RATING_LABEL:
 		RatingLabelUpdate();

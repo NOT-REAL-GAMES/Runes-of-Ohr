@@ -98,7 +98,7 @@ void CNPC_Crow::Spawn( void )
 	char *szModel = (char *)STRING( GetModelName() );
 	if (!szModel || !*szModel)
 	{
-		szModel = "models/crow.mdl";
+		szModel = (char*)"models/crow.mdl";
 		SetModelName( AllocPooledString(szModel) );
 	}
 

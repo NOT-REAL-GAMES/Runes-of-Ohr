@@ -140,8 +140,8 @@ void CBaseViewModel::SpawnControlPanels()
 
 	// If we're attached to an entity, spawn control panels on it instead of use
 	CBaseAnimating *pEntityToSpawnOn = this;
-	char *pOrgLL = "controlpanel%d_ll";
-	char *pOrgUR = "controlpanel%d_ur";
+	char *pOrgLL = (char*)"controlpanel%d_ll";
+	char *pOrgUR = (char*)"controlpanel%d_ur";
 	char *pAttachmentNameLL = pOrgLL;
 	char *pAttachmentNameUR = pOrgUR;
 	/*

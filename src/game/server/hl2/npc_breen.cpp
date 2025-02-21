@@ -82,7 +82,7 @@ void CNPC_Breen::Spawn()
 	char *szModel = (char *)STRING( GetModelName() );
 	if (!szModel || !*szModel)
 	{
-		szModel = "models/breen.mdl";
+		szModel = (char*)"models/breen.mdl";
 		SetModelName( AllocPooledString(szModel) );
 	}
 

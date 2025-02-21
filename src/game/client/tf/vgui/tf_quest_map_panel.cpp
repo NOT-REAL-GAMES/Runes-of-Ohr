@@ -1239,7 +1239,7 @@ CON_COMMAND( show_quest_log, "Show the quest map panel" )
 		CTFPlayer *pTFLocalPlayer = CTFPlayer::GetLocalTFPlayer();
 		if ( pTFLocalPlayer && ( pTFLocalPlayer->IsTaunting() || pTFLocalPlayer->ShouldShowHudMenuTauntSelection() ) )
 		{
-			internalCenterPrint->Print( "#TF_CYOA_PDA_Taunting" );
+			internalCenterPrint->Print( (char*)"#TF_CYOA_PDA_Taunting" );
 		}
 		else
 		{

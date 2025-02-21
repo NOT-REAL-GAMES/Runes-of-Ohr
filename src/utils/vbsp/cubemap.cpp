@@ -99,10 +99,10 @@ static const char *FindSkyboxMaterialName( void )
 {
 	for( int i = 0; i < g_MainMap->num_entities; i++ )
 	{
-		char* pEntity = ValueForKey(&g_MainMap->entities[i], "classname");
+		char* pEntity = ValueForKey(&g_MainMap->entities[i], (char*)"classname");
 		if (!strcmp(pEntity, "worldspawn"))
 		{
-			return ValueForKey( &g_MainMap->entities[i], "skyname" );
+			return ValueForKey( &g_MainMap->entities[i], (char*)"skyname" );
 		}
 	}
 	return NULL;

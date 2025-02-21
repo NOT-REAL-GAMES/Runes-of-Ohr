@@ -890,10 +890,10 @@ float DetermineVisRadius( )
 	// Check the max vis range to determine the vis radius
 	for (int i = 0; i < num_entities; ++i)
 	{
-		char* pEntity = ValueForKey(&entities[i], "classname");
+		char* pEntity = ValueForKey(&entities[i], (char*)"classname");
 		if (!stricmp(pEntity, "env_fog_controller"))
 		{
-			flRadius = FloatForKey (&entities[i], "farz");
+			flRadius = FloatForKey (&entities[i], (char*)"farz");
 			if (flRadius == 0.0f)
 				flRadius = -1.0f;
 			break;

@@ -673,7 +673,7 @@ void FinalLightFace( int iThread, int facenum )
 	//
 	// sample the triangulation
 	//
-	minlight = FloatForKey (face_entity[facenum], "_minlight") * 128;
+	minlight = FloatForKey (face_entity[facenum], (char*)"_minlight") * 128;
 
 	bool needsBumpmap = ( texinfo[f->texinfo].flags & SURF_BUMPLIGHT ) ? true : false;
 	int bumpSampleCount = needsBumpmap ? NUM_BUMP_VECTS + 1 : 1;

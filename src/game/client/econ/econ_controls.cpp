@@ -2161,7 +2161,7 @@ void CPanelModalStack::PushModal( vgui::Panel *pDialog )
 
 	FOR_EACH_VEC( m_pDialogs, i )
 	{
-		if ( m_pDialogs[i] == hHandle )
+		if ( m_pDialogs[i].Get() == hHandle)
 			return;
 	}
 

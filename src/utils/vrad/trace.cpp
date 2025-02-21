@@ -477,7 +477,7 @@ int PointLeafnum( const Vector &point )
 
 dmodel_t *BrushmodelForEntity( entity_t *pEntity )
 {
-	const char *pModelname = ValueForKey( pEntity, "model" );
+	const char *pModelname = ValueForKey( pEntity, (char*)"model" );
 	if ( Q_strlen(pModelname) > 1 )
 	{
 		int modelIndex = atol( pModelname + 1 );
@@ -579,12 +579,12 @@ void ExtractBrushEntityShadowCasters()
 {
 	for ( int i = 0; i < num_entities; i++ )
 	{
-		if ( IntForKey( &entities[i], "vrad_brush_cast_shadows" ) != 0 )
+		if ( IntForKey( &entities[i], (char*)"vrad_brush_cast_shadows" ) != 0 )
 		{
 			Vector origin;
 			QAngle angles;
-			GetVectorForKey( &entities[i], "origin", origin );
-			GetAnglesForKey( &entities[i], "angles", angles );
+			GetVectorForKey( &entities[i], (char*)"origin", origin );
+			GetAnglesForKey( &entities[i], (char*)"angles", angles );
 			VMatrix xform;
 			xform.SetupMatrixOrgAngles( origin, angles );
 			AddBrushes( BrushmodelForEntity( &entities[i] ), xform );

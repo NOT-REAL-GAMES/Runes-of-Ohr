@@ -115,7 +115,7 @@ void CDashboardPartyMember::ApplySettings( KeyValues *inResourceData )
 
 wchar_t* FindStringSafe( const char* pszToken )
 {
-	static wchar_t* wszEmptyString = L"";
+	static wchar_t* wszEmptyString = (wchar_t*)L"";
 	auto index = g_pVGuiLocalize->FindIndex( pszToken );
 	if ( index == INVALID_LOCALIZE_STRING_INDEX )
 		return wszEmptyString;

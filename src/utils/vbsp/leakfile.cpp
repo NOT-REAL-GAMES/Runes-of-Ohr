@@ -79,7 +79,7 @@ void LeakFile (tree_t *tree)
 
 	// Add the occupant's origin to the leakfile.
 	Vector origin;
-	GetVectorForKey (node->occupant, "origin", origin);
+	GetVectorForKey (node->occupant, (char*)"origin", origin);
 
 	fprintf (linefile, "%f %f %f\n", origin[0], origin[1], origin[2]);
 	qprintf ("%5i point linefile\n", count+1);
@@ -87,7 +87,7 @@ void LeakFile (tree_t *tree)
 	fclose (linefile);
 
 	// Emit a leak warning.
-	const char *cl = ValueForKey (node->occupant, "classname");
+	const char *cl = ValueForKey (node->occupant, (char*)"classname");
 	Color red(255,0,0,255);
 	ColorSpewMessage( SPEW_MESSAGE, &red, "Entity %s (%.2f %.2f %.2f) leaked!\n", cl, origin[0], origin[1], origin[2] );
 }

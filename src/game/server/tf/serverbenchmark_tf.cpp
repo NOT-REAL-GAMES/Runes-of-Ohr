@@ -35,8 +35,8 @@ public:
 
 	virtual void GetPhysicsModelNames( CUtlVector<char*> &modelNames )
 	{
-		modelNames.AddToTail( "models/props_farm/wooden_barrel.mdl" );
-		modelNames.AddToTail( "models/props_gameplay/orange_cone001.mdl" );
+		modelNames.AddToTail((char*)"models/props_farm/wooden_barrel.mdl" );
+		modelNames.AddToTail((char*)"models/props_gameplay/orange_cone001.mdl" );
 	}
 
 	virtual CBaseEntity* GetBlueSpawnPoint( bool bBest )

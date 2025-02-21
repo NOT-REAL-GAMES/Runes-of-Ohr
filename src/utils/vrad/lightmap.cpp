@@ -945,7 +945,7 @@ entity_t *FindTargetEntity (char *target)
 
 	for (i=0 ; i<num_entities ; i++)
 	{
-		n = ValueForKey (&entities[i], "targetname");
+		n = ValueForKey (&entities[i], (char*)"targetname");
 		if (!strcmp (n, target))
 			return &entities[i];
 	}
@@ -1127,19 +1127,19 @@ static void ParseLightGeneric( entity_t *e, directlight_t *dl )
 	char	        *target;
 	Vector	        dest;
 
-	dl->light.style = (int)FloatForKey (e, "style");
+	dl->light.style = (int)FloatForKey (e, (char*)"style");
 	
 	// get intenfsity
-	if( g_bHDR && LightForKey( e, "_lightHDR", dl->light.intensity ) ) 
+	if( g_bHDR && LightForKey( e, (char*)"_lightHDR", dl->light.intensity ) )
 	{
 	}
 	else
 	{
-		LightForKey( e, "_light", dl->light.intensity );
+		LightForKey( e, (char*)"_light", dl->light.intensity );
 	}
 	
 	// check angle, targets
-	target = ValueForKey (e, "target");
+	target = ValueForKey (e, (char*)"target");
 	if (target[0])
 	{	// point towards target
 		e2 = FindTargetEntity (target);
@@ -1148,7 +1148,7 @@ static void ParseLightGeneric( entity_t *e, directlight_t *dl )
 					(int)dl->light.origin[0], (int)dl->light.origin[1], (int)dl->light.origin[2]);
 		else
 		{
-			GetVectorForKey (e2, "origin", dest);
+			GetVectorForKey (e2, (char*)"origin", dest);
 			VectorSubtract (dest, dl->light.origin, dl->light.normal);
 			VectorNormalize (dl->light.normal);
 		}
@@ -1157,26 +1157,26 @@ static void ParseLightGeneric( entity_t *e, directlight_t *dl )
 	{	
 		// point down angle
 		Vector angles;
-		GetVectorForKey( e, "angles", angles );
-		float pitch = FloatForKey (e, "pitch");
-		float angle = FloatForKey (e, "angle");
+		GetVectorForKey( e, (char*)"angles", angles );
+		float pitch = FloatForKey (e, (char*)"pitch");
+		float angle = FloatForKey (e, (char*)"angle");
 		SetupLightNormalFromProps( QAngle( angles.x, angles.y, angles.z ), angle, pitch, dl->light.normal );
 	}
 	if ( g_bHDR )
 		VectorScale( dl->light.intensity, 
-					 FloatForKeyWithDefault( e, "_lightscaleHDR", 1.0 ),
+					 FloatForKeyWithDefault( e, (char*)"_lightscaleHDR", 1.0 ),
 					 dl->light.intensity );
 }
 
 static void SetLightFalloffParams( entity_t * e, directlight_t * dl )
 {
-	float d50=FloatForKey( e, "_fifty_percent_distance" );
+	float d50=FloatForKey( e, (char*)"_fifty_percent_distance" );
 	dl->m_flStartFadeDistance = 0;
 	dl->m_flEndFadeDistance = - 1;
 	dl->m_flCapDist = 1.0e22;
 	if ( d50 )
 	{
-		float d0 = FloatForKey( e, "_zero_percent_distance" );
+		float d0 = FloatForKey( e, (char*)"_zero_percent_distance" );
 		if ( d0 < d50 )
 		{
 			Warning( "light has _fifty_percent_distance of %f but _zero_percent_distance of %f\n", d50, d0);
@@ -1205,7 +1205,7 @@ static void SetLightFalloffParams( entity_t * e, directlight_t * dl )
 
 
 
-		if ( IntForKey(e, "_hardfalloff" ) )
+		if ( IntForKey(e, (char*)"_hardfalloff" ) )
 		{
 			dl->m_flEndFadeDistance = d0;
 			dl->m_flStartFadeDistance = 0.75 * d0 + 0.25 * d50;		// start fading 3/4 way between 50 and 0. could allow adjust
@@ -1230,11 +1230,11 @@ static void SetLightFalloffParams( entity_t * e, directlight_t * dl )
 	}
 	else
 	{
-		dl->light.constant_attn = FloatForKey (e, "_constant_attn" );
-		dl->light.linear_attn = FloatForKey (e, "_linear_attn" );
-		dl->light.quadratic_attn = FloatForKey (e, "_quadratic_attn" );
+		dl->light.constant_attn = FloatForKey (e, (char*)"_constant_attn" );
+		dl->light.linear_attn = FloatForKey (e, (char*)"_linear_attn" );
+		dl->light.quadratic_attn = FloatForKey (e, (char*)"_quadratic_attn" );
 
-		dl->light.radius = FloatForKey (e, "_distance");
+		dl->light.radius = FloatForKey (e, (char*)"_distance");
 
 		// clamp values to >= 0
 		if ( dl->light.constant_attn < EQUAL_EPSILON )
@@ -1261,18 +1261,18 @@ static void SetLightFalloffParams( entity_t * e, directlight_t * dl )
 static void ParseLightSpot( entity_t* e, directlight_t* dl )
 {
 	Vector dest;
-	GetVectorForKey (e, "origin", dest );
+	GetVectorForKey (e, (char*)"origin", dest );
 	dl = AllocDLight( dest, true );
 
 	ParseLightGeneric( e, dl );
 
 	dl->light.type = emit_spotlight;
 
-	dl->light.stopdot = FloatForKey (e, "_inner_cone");
+	dl->light.stopdot = FloatForKey (e, (char*)"_inner_cone");
 	if (!dl->light.stopdot)
 		dl->light.stopdot = 10;
 
-	dl->light.stopdot2 = FloatForKey (e, "_cone");
+	dl->light.stopdot2 = FloatForKey (e, (char*)"_cone");
 	if (!dl->light.stopdot2) 
 		dl->light.stopdot2 = dl->light.stopdot;
 	if (dl->light.stopdot2 < dl->light.stopdot)
@@ -1304,7 +1304,7 @@ static void ParseLightSpot( entity_t* e, directlight_t* dl )
 
 		dl->light.stopdot2 = (float)cos(dl->light.stopdot2/180*M_PI);
 		dl->light.stopdot = (float)cos(dl->light.stopdot/180*M_PI);
-		dl->light.exponent = FloatForKey (e, "_exponent");
+		dl->light.exponent = FloatForKey (e, (char*)"_exponent");
 	}
 
 	SetLightFalloffParams(e,dl);
@@ -1475,12 +1475,12 @@ static char *ValueForKeyWithDefault (entity_t *ent, char *key, char *default_val
 static void ParseLightEnvironment( entity_t* e, directlight_t* dl )
 {
 	Vector dest;
-	GetVectorForKey (e, "origin", dest );
+	GetVectorForKey (e, (char*)"origin", dest );
 	dl = AllocDLight( dest, false );
 
 	ParseLightGeneric( e, dl );
 
-	char *angle_str=ValueForKeyWithDefault( e, "SunSpreadAngle" );
+	char *angle_str=ValueForKeyWithDefault( e, (char*)"SunSpreadAngle" );
 	if (angle_str)
 	{
 		g_SunAngularExtent=atof(angle_str);
@@ -1496,18 +1496,18 @@ static void ParseLightEnvironment( entity_t* e, directlight_t* dl )
 		// Sky ambient light.
 		gAmbient = AllocDLight( dl->light.origin, false );
 		gAmbient->light.type = emit_skyambient;
-		if( g_bHDR && LightForKey( e, "_ambientHDR", gAmbient->light.intensity ) )
+		if( g_bHDR && LightForKey( e, (char*)"_ambientHDR", gAmbient->light.intensity ) )
 		{
 			// we have a valid HDR ambient light value
 		}
-		else if ( !LightForKey( e, "_ambient", gAmbient->light.intensity ) )
+		else if ( !LightForKey( e, (char*)"_ambient", gAmbient->light.intensity ) )
 		{
 			VectorScale( dl->light.intensity, 0.5, gAmbient->light.intensity );
 		}
 		if ( g_bHDR )
 		{
 			VectorScale( gAmbient->light.intensity, 
-						 FloatForKeyWithDefault( e, "_AmbientScaleHDR", 1.0 ), 
+						 FloatForKeyWithDefault( e, (char*)"_AmbientScaleHDR", 1.0 ),
 						 gAmbient->light.intensity );
 		}
 		
@@ -1522,7 +1522,7 @@ static void ParseLightEnvironment( entity_t* e, directlight_t* dl )
 static void ParseLightPoint( entity_t* e, directlight_t* dl )
 {
 	Vector dest;
-	GetVectorForKey (e, "origin", dest );
+	GetVectorForKey (e, (char*)"origin", dest );
 	dl = AllocDLight( dest, true );
 
 	ParseLightGeneric( e, dl );
@@ -1587,7 +1587,7 @@ void CreateDirectLights (void)
 	for (i=0 ; i<(unsigned)num_entities ; i++)
 	{
 		e = &entities[i];
-		name = ValueForKey (e, "classname");
+		name = ValueForKey (e, (char*)"classname");
 		if (strncmp (name, "light", 5))
 			continue;
 

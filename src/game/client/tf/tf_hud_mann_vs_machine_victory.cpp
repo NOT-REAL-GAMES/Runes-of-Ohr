@@ -166,22 +166,22 @@ void CVictoryPanel::OnTick( void )
 	switch ( m_eState )
 	{
 	case CREDITS_COLLECT:
-		StateUpdateValue ( m_pCreditContainerPanel, CREDITS_COLLECTED_STR, CREDITS_COLLECTED_TIME, m_fStateRunningTime, CREDITS_MISSED, m_nCreditsCollected );
+		StateUpdateValue ( m_pCreditContainerPanel, (char*)CREDITS_COLLECTED_STR, CREDITS_COLLECTED_TIME, m_fStateRunningTime, CREDITS_MISSED, m_nCreditsCollected );
 		break;
 	case CREDITS_MISSED:
-		StateUpdateValue ( m_pCreditContainerPanel, CREDITS_MISSED_STR, CREDITS_MISSED_TIME, m_fStateRunningTime, CREDITS_BONUS, m_nCreditsMissed );
+		StateUpdateValue ( m_pCreditContainerPanel, (char*)CREDITS_MISSED_STR, CREDITS_MISSED_TIME, m_fStateRunningTime, CREDITS_BONUS, m_nCreditsMissed );
 		break;
 	case CREDITS_BONUS:
-		StateUpdateValue ( m_pCreditContainerPanel, CREDITS_BONUS_STR, CREDITS_BONUS_TIME, m_fStateRunningTime, YOUR_UPGRADES, m_nCreditBonus );
+		StateUpdateValue ( m_pCreditContainerPanel, (char*)CREDITS_BONUS_STR, CREDITS_BONUS_TIME, m_fStateRunningTime, YOUR_UPGRADES, m_nCreditBonus );
 		break;
 	case YOUR_UPGRADES:
-		StateUpdateValue ( m_pTotalGameCreditSpendPanel, YOUR_UPGRADES_STR, SHORT_TIME, m_fStateRunningTime, YOUR_BUYBACK, m_nYourUpgradeCredits );
+		StateUpdateValue ( m_pTotalGameCreditSpendPanel, (char*)YOUR_UPGRADES_STR, SHORT_TIME, m_fStateRunningTime, YOUR_BUYBACK, m_nYourUpgradeCredits );
 		break;
 	case YOUR_BUYBACK:
-		StateUpdateValue ( m_pTotalGameCreditSpendPanel, YOUR_BUYBACKS_STR, SHORT_TIME, m_fStateRunningTime, YOUR_BOTTLES, m_nYourBuybacksCredits );
+		StateUpdateValue ( m_pTotalGameCreditSpendPanel, (char*)YOUR_BUYBACKS_STR, SHORT_TIME, m_fStateRunningTime, YOUR_BOTTLES, m_nYourBuybacksCredits );
 		break;
 	case YOUR_BOTTLES:
-		StateUpdateValue ( m_pTotalGameCreditSpendPanel, YOUR_BOTTLES_STR, SHORT_TIME, m_fStateRunningTime, RATING_LABEL, m_nYourBottlesCredits );
+		StateUpdateValue ( m_pTotalGameCreditSpendPanel, (char*)YOUR_BOTTLES_STR, SHORT_TIME, m_fStateRunningTime, RATING_LABEL, m_nYourBottlesCredits );
 		break;
 	case RATING_LABEL:
 		RatingLabelUpdate();

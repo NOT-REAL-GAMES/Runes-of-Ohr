@@ -207,7 +207,7 @@ matchresult_t CTFAutoRP::WordMatches( wordreplacement_t *pRep, replacementcheck_
 			return MATCHES_NOT;
 
 		CUtlSymbol sym = m_pWordTable->Find( pCheck->szPrevWord );
-		if ( UTL_INVAL_SYMBOL == sym )
+		if ( (CUtlSymbol)UTL_INVAL_SYMBOL == sym )
 			return MATCHES_NOT;
 
 		bool bMatchPrev = false;

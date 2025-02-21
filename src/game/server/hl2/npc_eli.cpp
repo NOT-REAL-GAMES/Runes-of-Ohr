@@ -85,7 +85,7 @@ void CNPC_Eli::Spawn()
 	char *szModel = (char *)STRING( GetModelName() );
 	if (!szModel || !*szModel)
 	{
-		szModel = "models/eli.mdl";
+		szModel = (char*)"models/eli.mdl";
 		SetModelName( AllocPooledString(szModel) );
 	}
 

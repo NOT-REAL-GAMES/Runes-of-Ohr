@@ -19,7 +19,7 @@ typedef struct
 } TypeMap_t;
 
 
-char *CClassInputOutputBase::g_pszEmpty = "";
+char *CClassInputOutputBase::g_pszEmpty = (char *)"";
 
 
 //-----------------------------------------------------------------------------
@@ -27,16 +27,16 @@ char *CClassInputOutputBase::g_pszEmpty = "";
 //-----------------------------------------------------------------------------
 static TypeMap_t TypeMap[] =
 {
-	{ iotVoid,		"void" },
-	{ iotInt,		"integer" },
-	{ iotBool,		"bool" },
-	{ iotString,	"string" },
-	{ iotFloat,		"float" },
-	{ iotVector,	"vector" },
-	{ iotEHandle,	"target_destination" },
-	{ iotColor,		"color255" },
-	{ iotEHandle,	"ehandle" }, // for backwards compatibility
-	{ iotScript,	"script" },
+	{ iotVoid,		(char*)"void" },
+	{ iotInt,		(char*)"integer" },
+	{ iotBool,		(char*)"bool" },
+	{ iotString,	(char*)"string" },
+	{ iotFloat,		(char*)"float" },
+	{ iotVector,	(char*)"vector" },
+	{ iotEHandle,	(char*)"target_destination" },
+	{ iotColor,		(char*)"color255" },
+	{ iotEHandle,	(char*)"ehandle" }, // for backwards compatibility
+	{ iotScript,	(char*)"script" },
 };
 
 

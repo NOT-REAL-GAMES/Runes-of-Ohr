@@ -91,7 +91,7 @@ void CPropThumper::Spawn( void )
 	char *szModel = (char *)STRING( GetModelName() );
 	if (!szModel || !*szModel)
 	{
-		szModel = THUMPER_MODEL_NAME;
+		szModel = (char*)THUMPER_MODEL_NAME;
 		SetModelName( AllocPooledString(szModel) );
 	}
 

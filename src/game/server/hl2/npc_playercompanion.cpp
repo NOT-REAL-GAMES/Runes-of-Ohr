@@ -2133,7 +2133,7 @@ void CNPC_PlayerCompanion::AimGun()
 			// they walk through doorways which contain a looktarget.
 			if( flDist < COMPANION_AIMTARGET_NEAREST_SQR )
 			{
-				StopAiming("Target too near");
+				StopAiming((char*)"Target too near");
 				return;
 			}
 
@@ -2148,7 +2148,7 @@ void CNPC_PlayerCompanion::AimGun()
 				if( !FindNewAimTarget() )
 				{	
 					// No alternative available right now. Stop aiming.
-					StopAiming("No LOS");
+					StopAiming((char*)"No LOS");
 				}
 			}
 
@@ -2168,7 +2168,7 @@ void CNPC_PlayerCompanion::AimGun()
 				else
 				{
 					// ditch the aim target, it's gone out of view.
-					StopAiming("Went out of view cone");
+					StopAiming((char*)"Went out of view cone");
 				}
 			}
 

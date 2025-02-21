@@ -308,7 +308,7 @@ void CEmptyServerPlugin::ClientSettingsChanged( edict_t *pEdict )
 			 stricmp( name, playerinfo->GetName()) ) // playerinfo may be NULL if the MOD doesn't support access to player data 
 													   // OR if you are accessing the player before they are fully connected
 		{
-			ClientPrint( pEdict, "Your name changed to \"%s\" (from \"%s\"\n", name, playerinfo->GetName() );
+			ClientPrint( pEdict, (char*)"Your name changed to \"%s\" (from \"%s\"\n", name, playerinfo->GetName() );
 						// this is the bad way to check this, the better option it to listen for the "player_changename" event in FireGameEvent()
 						// this is here to give a real example of how to use the playerinfo interface
 		}

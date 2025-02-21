@@ -1089,7 +1089,7 @@ void CNPC_Vortigaunt::Spawn( void )
 	char *szModel = (char *)STRING( GetModelName() );
 	if (!szModel || !*szModel)
 	{
-		szModel = "models/vortigaunt.mdl";
+		szModel = (char*)"models/vortigaunt.mdl";
 		SetModelName( AllocPooledString(szModel) );
 	}
 

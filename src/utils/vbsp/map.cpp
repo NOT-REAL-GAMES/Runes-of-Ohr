@@ -1286,7 +1286,7 @@ void ConvertSideList( entity_t *mapent, char *key )
 ChunkFileResult_t HandleNoDynamicShadowsEnt( entity_t *pMapEnt )
 {
 	// Get the list of the sides.
-	char *pSideList = ValueForKey( pMapEnt, "sides" );
+	char *pSideList = ValueForKey( pMapEnt, (char*)"sides" );
 
 	// Parse the side list.
 	char *pScan = strtok( pSideList, " " );
@@ -1520,10 +1520,10 @@ ChunkFileResult_t CMapFile::LoadEntityCallback(CChunkFile *pFile, int nParam)
 
 	if (eResult == ChunkFile_Ok)
 	{
-		GetVectorForKey (mapent, "origin", mapent->origin);
+		GetVectorForKey (mapent, (char*)"origin", mapent->origin);
 
-		const char *pMinDXLevelStr = ValueForKey( mapent, "mindxlevel" );
-		const char *pMaxDXLevelStr = ValueForKey( mapent, "maxdxlevel" );
+		const char *pMinDXLevelStr = ValueForKey( mapent, (char*)"mindxlevel" );
+		const char *pMaxDXLevelStr = ValueForKey( mapent, (char*)"maxdxlevel" );
 		if( *pMinDXLevelStr != '\0' || *pMaxDXLevelStr != '\0' )
 		{
 			int min = 0;
@@ -1577,7 +1577,7 @@ ChunkFileResult_t CMapFile::LoadEntityCallback(CChunkFile *pFile, int nParam)
 		//
 		// func_detail brushes are moved into the world entity. The CONTENTS_DETAIL flag was set by the loader.
 		//
-		const char *pClassName = ValueForKey( mapent, "classname" );
+		const char *pClassName = ValueForKey( mapent, (char*)"classname" );
 
 		if ( !strcmp( "func_detail", pClassName ) )
 		{
@@ -1617,9 +1617,9 @@ ChunkFileResult_t CMapFile::LoadEntityCallback(CChunkFile *pFile, int nParam)
 		{
 			if( ( g_nDXLevel == 0 ) || ( g_nDXLevel >= 70 ) )
 			{
-				const char *pSideListStr = ValueForKey( mapent, "sides" );
+				const char *pSideListStr = ValueForKey( mapent, (char*)"sides" );
 				int size;
-				size = IntForKey( mapent, "cubemapsize" );
+				size = IntForKey( mapent, (char*)"cubemapsize" );
 				Cubemap_InsertSample( mapent->origin, size );
 				Cubemap_SaveBrushSides( pSideListStr );
 			}
@@ -1630,7 +1630,7 @@ ChunkFileResult_t CMapFile::LoadEntityCallback(CChunkFile *pFile, int nParam)
 
 		if ( !strcmp( "test_sidelist", pClassName ) )
 		{
-			ConvertSideList(mapent, "sides");
+			ConvertSideList(mapent, (char*)"sides");
 			return ChunkFile_Ok;
 		}
 
@@ -1794,7 +1794,7 @@ entity_t* EntityByName( char const *pTestName )
 	{
 		entity_t *e = &g_MainMap->entities[i];
 
-		const char *pName = ValueForKey( e, "targetname" );
+		const char *pName = ValueForKey( e, (char*)"targetname" );
 		if( stricmp( pName, pTestName ) == 0 )
 			return e;
 	}
@@ -1807,14 +1807,14 @@ void CMapFile::ForceFuncAreaPortalWindowContents()
 {
 	// Now go through all areaportal entities and force CONTENTS_WINDOW
 	// on the brushes of the bmodels they point at.
-	char *targets[] = {"target", "BackgroundBModel"};
+	char *targets[] = { (char*)"target", (char*)"BackgroundBModel"};
 	int nTargets = sizeof(targets) / sizeof(targets[0]);
 
 	for( int i=0; i < num_entities; i++ )
 	{
 		entity_t *e = &entities[i];
 
-		const char *pClassName = ValueForKey( e, "classname" );
+		const char *pClassName = ValueForKey( e, (char*)"classname" );
 
 		// Don't do this on "normal" func_areaportal entities.  Those are tied to doors
 		// and should be opaque when closed.  But areaportal windows (and any other 
@@ -2015,10 +2015,10 @@ void CMapFile::CheckForInstances( const char *pszFileName )
 	// automatically done in this processing.
 	for ( int i = 0; i < num_entities; i++ )
 	{
-		char *pEntity = ValueForKey( &entities[ i ], "classname" );
+		char *pEntity = ValueForKey( &entities[ i ], (char*)"classname" );
 		if ( !strcmp( pEntity, "func_instance" ) )
 		{
-			char *pInstanceFile = ValueForKey( &entities[ i ], "file" );
+			char *pInstanceFile = ValueForKey( &entities[ i ], (char*)"file" );
 			if ( pInstanceFile[ 0 ] )
 			{
 				char	InstancePath[ MAX_PATH ];
@@ -2066,7 +2066,7 @@ void CMapFile::MergeInstance( entity_t *pInstanceEntity, CMapFile *Instance )
 
 	m_InstanceCount++;
 
-	GetAnglesForKey( pInstanceEntity, "angles", angles );
+	GetAnglesForKey( pInstanceEntity, (char*)"angles", angles );
 	AngleMatrix( angles, OriginOffset, mat );
 
 #ifdef MERGE_INSTANCE_DEBUG_INFO
@@ -2333,8 +2333,8 @@ void CMapFile::MergeEntities( entity_t *pInstanceEntity, CMapFile *Instance, Vec
 	entity_t				*WorldspawnEnt = NULL;
 	GameData::TNameFixup	FixupStyle;
 
-	char *pTargetName = ValueForKey( pInstanceEntity, "targetname" );
-	char *pName = ValueForKey( pInstanceEntity, "name" );
+	char *pTargetName = ValueForKey( pInstanceEntity, (char*)"targetname" );
+	char *pName = ValueForKey( pInstanceEntity, (char*)"name" );
 	if ( pTargetName[ 0 ] )
 	{
 		sprintf( NameFixup, "%s", pTargetName );
@@ -2350,7 +2350,7 @@ void CMapFile::MergeEntities( entity_t *pInstanceEntity, CMapFile *Instance, Vec
 
 	for( int i = 0; i < num_entities; i++ )
 	{
-		char *pID = ValueForKey( &entities[ i ], "hammerid" );
+		char *pID = ValueForKey( &entities[ i ], (char*)"hammerid" );
 		if ( pID[ 0 ] )
 		{
 			int value = atoi( pID );
@@ -2361,7 +2361,7 @@ void CMapFile::MergeEntities( entity_t *pInstanceEntity, CMapFile *Instance, Vec
 		}
 	}
 
-	FixupStyle = ( GameData::TNameFixup )( IntForKey( pInstanceEntity, "fixup_style" ) );
+	FixupStyle = ( GameData::TNameFixup )( IntForKey( pInstanceEntity, (char*)"fixup_style" ) );
 
 	for( int i = 0; i < Instance->num_entities; i++ )
 	{
@@ -2370,7 +2370,7 @@ void CMapFile::MergeEntities( entity_t *pInstanceEntity, CMapFile *Instance, Vec
 		entity_t *entity = &entities[ num_entities + i ];
 		entity->firstbrush += ( nummapbrushes - Instance->nummapbrushes );
 
-		char *pID = ValueForKey( entity, "hammerid" );
+		char *pID = ValueForKey( entity, (char*)"hammerid" );
 		if ( pID[ 0 ] )
 		{
 			int value = atoi( pID );
@@ -2380,7 +2380,7 @@ void CMapFile::MergeEntities( entity_t *pInstanceEntity, CMapFile *Instance, Vec
 			SetKeyValue( entity, "hammerid", temp );
 		}
 
-		char *pEntity = ValueForKey( entity, "classname" );
+		char *pEntity = ValueForKey( entity, (char*)"classname" );
 		if ( strcmpi( pEntity, "worldspawn" ) == 0 )
 		{
 			WorldspawnEnt = entity;
@@ -3142,7 +3142,7 @@ void CMapFile::TestExpandBrushes (void)
 	side_t	*s;
 	int		i, j, bn;
 	winding_t	*w;
-	char	*name = "expanded.map";
+	char	*name = (char*)"expanded.map";
 	mapbrush_t	*brush;
 	vec_t	dist;
 

@@ -174,10 +174,10 @@ static const char *s_PreserveEnts[] =
 // NOTE: the indices here must match TEAM_TERRORIST, TEAM_CT, TEAM_SPECTATOR, etc.
 char *sTeamNames[] =
 {
-	"Unassigned",
-	"Spectator",
-	"Combine",
-	"Rebels",
+	(char*)"Unassigned",
+	(char*)"Spectator",
+	(char*)"Combine",
+	(char*)"Rebels",
 };
 
 CHL2MPRules::CHL2MPRules()

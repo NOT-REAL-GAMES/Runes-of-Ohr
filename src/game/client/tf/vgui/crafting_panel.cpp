@@ -62,7 +62,7 @@ recipefilter_data_t g_RecipeFilters[NUM_RECIPE_CATEGORIES] =
 wchar_t *LocalizeRecipeStringPiece( const char *pszString, wchar_t *pszConverted, int nConvertedSizeInBytes ) 
 {
 	if ( !pszString )
-		return L"";
+		return (wchar_t*)L"";
 
 	if ( pszString[0] == '#' )
 		return g_pVGuiLocalize->Find( pszString );

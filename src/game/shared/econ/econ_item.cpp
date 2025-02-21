@@ -424,6 +424,7 @@ void CEconItem::InternalVerifyEquipInstanceIntegrity() const
 //----------------------------------------------------------------------------
 void CEconItem::Equip( equipped_class_t unClass, equipped_slot_t unSlot )
 {
+	if (this == nullptr) { return; } //immensely stupid
 	Assert( GetItemSchema()->IsValidClass( unClass ) );
 	Assert( GetItemSchema()->IsValidItemSlot( unSlot, unClass ) );
 

@@ -250,7 +250,7 @@ bool CScriptConvarAccessor::IsConVarOnAllowList( const char *cvar )
 	if ( !cvar || !*cvar )
 		return false;
 
-	return m_AllowedConVars.Find( cvar ) != UTL_INVAL_SYMBOL;
+	return m_AllowedConVars.Find( cvar ) != (CUtlSymbol)UTL_INVAL_SYMBOL;
 }
 
 BEGIN_SCRIPTDESC_ROOT_NAMED( CScriptConvarAccessor, "Convars", SCRIPT_SINGLETON "Access to convar functions" )
@@ -2129,8 +2129,8 @@ static void Script_QueueSpeak( HSCRIPT hEntity, const char *pszConcept, float fl
 		criteria.Merge( pszCriteria );
 	}
 
-	AIConcept_t concept( pszConcept );
-	QueueSpeak( concept, pBaseEntity, flDelay, criteria );
+	AIConcept_t ai_concept( pszConcept );
+	QueueSpeak( ai_concept, pBaseEntity, flDelay, criteria );
 }
 #endif
 
@@ -2187,7 +2187,7 @@ static void ScriptSetSkyboxTexture( const char* pszSkyboxName )
 	}
 
 	char  name[ MAX_PATH ];
-	char *skyboxsuffix[ 6 ] = { "rt", "bk", "lf", "ft", "up", "dn" };
+	char *skyboxsuffix[ 6 ] = { (char*)"rt", (char*)"bk", (char*)"lf", (char*)"ft", (char*)"up", (char*)"dn" };
 	for ( int i = 0; i < 6; i++ )
 	{
 		Q_snprintf( name, sizeof( name ), "skybox/%s%s", pszSkyboxName, skyboxsuffix[i] );

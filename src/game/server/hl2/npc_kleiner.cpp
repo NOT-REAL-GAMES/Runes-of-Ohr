@@ -82,7 +82,7 @@ void CNPC_Kleiner::Spawn()
 	char *szModel = (char *)STRING( GetModelName() );
 	if (!szModel || !*szModel)
 	{
-		szModel = "models/kleiner.mdl";
+		szModel = (char*)"models/kleiner.mdl";
 		SetModelName( AllocPooledString(szModel) );
 	}
 

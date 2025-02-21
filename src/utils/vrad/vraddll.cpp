@@ -36,7 +36,7 @@ public:
 	char *name;
 	int size;
 };
-#define DATENTRY(name) {#name, sizeof(name)}
+#define DATENTRY(name) {(char*)#name, sizeof(name)}
 
 dat g_Dats[] =
 {

@@ -401,8 +401,8 @@ void ProcessSubModel( )
 	// This would wind up crashing the engine because we'd have a negative leaf index in dmodel_t::headnode.
 	if ( tree->headnode->planenum == PLANENUM_LEAF )
 	{
-		const char *pClassName = ValueForKey( e, "classname" );
-		const char *pTargetName = ValueForKey( e, "targetname" );
+		const char *pClassName = ValueForKey( e, (char*)"classname" );
+		const char *pTargetName = ValueForKey( e, (char*)"targetname" );
 		Error( "bmodel %d has no head node (class '%s', targetname '%s')", entity_num, pClassName, pTargetName );
 	}
 
@@ -437,7 +437,7 @@ void ProcessSubModel( )
 bool IsFuncOccluder( int entity_num )
 {
 	entity_t *mapent = &entities[entity_num];
-	const char *pClassName = ValueForKey( mapent, "classname" );
+	const char *pClassName = ValueForKey( mapent, (char*)"classname" );
 	return (strcmp("func_occluder", pClassName) == 0);
 }
 
@@ -672,7 +672,7 @@ void SetOccluderArea( int nOccluder, int nArea, int nEntityNum )
 	}
 	else if ( (nArea != 0) && (g_OccluderData[nOccluder].area != nArea) )
 	{
-		const char *pTargetName = ValueForKey( &entities[nEntityNum], "targetname" );
+		const char *pTargetName = ValueForKey( &entities[nEntityNum], (char*)"targetname" );
 		if (!pTargetName)
 		{
 			pTargetName = "<no name>";
@@ -787,7 +787,7 @@ static void Compute3DSkyboxAreas( node_t *headnode, CUtlVector<int>& areas )
 {
 	for (int i = 0; i < g_MainMap->num_entities; ++i)
 	{
-		char* pEntity = ValueForKey(&entities[i], "classname");
+		char* pEntity = ValueForKey(&entities[i], (char*)"classname");
 		if (!strcmp(pEntity, "sky_camera"))
 		{
 			// Found a 3D skybox camera, get a leaf that lies in it
@@ -1332,7 +1332,7 @@ int RunVBSP( int argc, char **argv )
 		g_nCubemapSamples = 0;
 
 		// Mark as stale since the lighting could be screwed with new ents.
-		AddBufferToPak( GetPakFile(), "stale.txt", "stale", strlen( "stale" ) + 1, false );
+		AddBufferToPak( GetPakFile(), "stale.txt", (void*)"stale", strlen( "stale" ) + 1, false );
 
 		LoadMapFile (name);
 		SetModelNumbers ();
@@ -1389,7 +1389,7 @@ int RunVBSP( int argc, char **argv )
 		{
 			LoadBSPFile_FileSystemOnly (mapFile);
 			// Mark as stale since the lighting could be screwed with new ents.
-			AddBufferToPak( GetPakFile(), "stale.txt", "stale", strlen( "stale" ) + 1, false );
+			AddBufferToPak( GetPakFile(), "stale.txt", (void*)"stale", strlen( "stale" ) + 1, false );
 		}
 
 		LoadMapFile (name);

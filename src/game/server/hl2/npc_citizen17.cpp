@@ -130,10 +130,10 @@ ConVar	ai_citizen_debug_commander( "ai_citizen_debug_commander", "1" );
 
 char *szExpressionTypes[CIT_EXP_LAST_TYPE] =
 {
-	"Unassigned",
-	"Scared",
-	"Normal",
-	"Angry"
+	(char*)"Unassigned",
+	(char*)"Scared",
+	(char*)"Normal",
+	(char*)"Angry"
 };
 
 struct citizen_expression_list_t
@@ -143,23 +143,23 @@ struct citizen_expression_list_t
 // Scared
 citizen_expression_list_t ScaredExpressions[STATES_WITH_EXPRESSIONS] =
 {
-	{ { "scenes/Expressions/citizen_scared_idle_01.vcd" } },
-	{ { "scenes/Expressions/citizen_scared_alert_01.vcd" } },
-	{ { "scenes/Expressions/citizen_scared_combat_01.vcd" } },
+	{ { (char*)"scenes/Expressions/citizen_scared_idle_01.vcd" } },
+	{ { (char*)"scenes/Expressions/citizen_scared_alert_01.vcd" } },
+	{ { (char*)"scenes/Expressions/citizen_scared_combat_01.vcd" } },
 };
 // Normal
 citizen_expression_list_t NormalExpressions[STATES_WITH_EXPRESSIONS] =
 {
-	{ { "scenes/Expressions/citizen_normal_idle_01.vcd" } },
-	{ { "scenes/Expressions/citizen_normal_alert_01.vcd" } },
-	{ { "scenes/Expressions/citizen_normal_combat_01.vcd" } },
+	{ { (char*)"scenes/Expressions/citizen_normal_idle_01.vcd" } },
+	{ { (char*)"scenes/Expressions/citizen_normal_alert_01.vcd" } },
+	{ { (char*)"scenes/Expressions/citizen_normal_combat_01.vcd" } },
 };
 // Angry
 citizen_expression_list_t AngryExpressions[STATES_WITH_EXPRESSIONS] =
 {
-	{ { "scenes/Expressions/citizen_angry_idle_01.vcd" } },
-	{ { "scenes/Expressions/citizen_angry_alert_01.vcd" } },
-	{ { "scenes/Expressions/citizen_angry_combat_01.vcd" } },
+	{ { (char*)"scenes/Expressions/citizen_angry_idle_01.vcd" } },
+	{ { (char*)"scenes/Expressions/citizen_angry_alert_01.vcd" } },
+	{ { (char*)"scenes/Expressions/citizen_angry_combat_01.vcd" } },
 };
 
 //-----------------------------------------------------------------------------
@@ -2501,9 +2501,9 @@ bool CNPC_Citizen::IsValidCommandTarget( CBaseEntity *pTarget )
 }
 
 //-----------------------------------------------------------------------------
-bool CNPC_Citizen::SpeakCommandResponse( AIConcept_t concept, const char *modifiers )
+bool CNPC_Citizen::SpeakCommandResponse( AIConcept_t ai_concept, const char *modifiers )
 {
-	return SpeakIfAllowed( concept, 
+	return SpeakIfAllowed( ai_concept, 
 						   CFmtStr( "numselected:%d,"
 									"useradio:%d%s",
 									( GetSquad() ) ? GetSquad()->NumMembers() : 1,
@@ -4065,9 +4065,9 @@ CCitizenResponseSystem	*GetCitizenResponse()
 
 char *CitizenResponseConcepts[MAX_CITIZEN_RESPONSES] = 
 {
-	"TLK_CITIZEN_RESPONSE_SHOT_GUNSHIP",
-	"TLK_CITIZEN_RESPONSE_KILLED_GUNSHIP",
-	"TLK_VITALNPC_DIED",
+	(char*)"TLK_CITIZEN_RESPONSE_SHOT_GUNSHIP",
+	(char*)"TLK_CITIZEN_RESPONSE_KILLED_GUNSHIP",
+	(char*)"TLK_VITALNPC_DIED",
 };
 
 LINK_ENTITY_TO_CLASS( ai_citizen_response_system, CCitizenResponseSystem );

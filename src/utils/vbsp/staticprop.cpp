@@ -458,10 +458,10 @@ static bool ComputeLightingOrigin( StaticPropBuild_t const& build, Vector& light
 		int entIndex = s_LightingInfo[i];
 
 		// Check against all lighting info entities
-		char const* pTargetName = ValueForKey( &entities[entIndex], "targetname" );
+		char const* pTargetName = ValueForKey( &entities[entIndex], (char*)"targetname" );
 		if (!Q_strcmp(pTargetName, build.m_pLightingOrigin))
 		{
-			GetVectorForKey( &entities[entIndex], "origin", lightingOrigin );
+			GetVectorForKey( &entities[entIndex], (char*)"origin", lightingOrigin );
 			return true;
 		}
 	}
@@ -581,7 +581,7 @@ void EmitStaticProps()
 	int i;
 	for ( i = 0; i < num_entities; ++i)
 	{
-		char* pEntity = ValueForKey(&entities[i], "classname");
+		char* pEntity = ValueForKey(&entities[i], (char*)"classname");
 		if (!Q_strcmp(pEntity, "info_lighting"))
 		{
 			s_LightingInfo.AddToTail(i);
@@ -591,41 +591,41 @@ void EmitStaticProps()
 	// Emit specifically specified static props
 	for ( i = 0; i < num_entities; ++i)
 	{
-		char* pEntity = ValueForKey(&entities[i], "classname");
+		char* pEntity = ValueForKey(&entities[i], (char*)"classname");
 		if (!strcmp(pEntity, "static_prop") || !strcmp(pEntity, "prop_static"))
 		{
 			StaticPropBuild_t build;
 
-			GetVectorForKey( &entities[i], "origin", build.m_Origin );
-			GetAnglesForKey( &entities[i], "angles", build.m_Angles );
-			build.m_pModelName = ValueForKey( &entities[i], "model" );
-			build.m_Solid = IntForKey( &entities[i], "solid" );
-			build.m_Skin = IntForKey( &entities[i], "skin" );
-			build.m_FadeMaxDist = FloatForKey( &entities[i], "fademaxdist" );
+			GetVectorForKey( &entities[i], (char*)"origin", build.m_Origin );
+			GetAnglesForKey( &entities[i], (char*)"angles", build.m_Angles );
+			build.m_pModelName = ValueForKey( &entities[i], (char*)"model" );
+			build.m_Solid = IntForKey( &entities[i], (char*)"solid" );
+			build.m_Skin = IntForKey( &entities[i], (char*)"skin" );
+			build.m_FadeMaxDist = FloatForKey( &entities[i], (char*)"fademaxdist" );
 			build.m_Flags = 0;//IntForKey( &entities[i], "spawnflags" ) & STATIC_PROP_WC_MASK;
-			if (IntForKey( &entities[i], "ignorenormals" ) == 1)
+			if (IntForKey( &entities[i], (char*)"ignorenormals" ) == 1)
 			{
 				build.m_Flags |= STATIC_PROP_IGNORE_NORMALS;
 			}
-			if (IntForKey( &entities[i], "disableshadows" ) == 1)
+			if (IntForKey( &entities[i], (char*)"disableshadows" ) == 1)
 			{
 				build.m_Flags |= STATIC_PROP_NO_SHADOW;
 			}
-			if (IntForKey( &entities[i], "disablevertexlighting" ) == 1)
+			if (IntForKey( &entities[i], (char*)"disablevertexlighting" ) == 1)
 			{
 				build.m_Flags |= STATIC_PROP_NO_PER_VERTEX_LIGHTING;
 			}
-			if (IntForKey( &entities[i], "disableselfshadowing" ) == 1)
+			if (IntForKey( &entities[i], (char*)"disableselfshadowing" ) == 1)
 			{
 				build.m_Flags |= STATIC_PROP_NO_SELF_SHADOWING;
 			}
 
-			if (IntForKey( &entities[i], "screenspacefade" ) == 1)
+			if (IntForKey( &entities[i], (char*)"screenspacefade" ) == 1)
 			{
 				build.m_Flags |= STATIC_PROP_SCREEN_SPACE_FADE;
 			}
 
-			if (IntForKey( &entities[i], "generatelightmaps") == 0)
+			if (IntForKey( &entities[i], (char*)"generatelightmaps") == 0)
 			{
 				build.m_Flags |= STATIC_PROP_NO_PER_TEXEL_LIGHTING;			
 				build.m_LightmapResolutionX = 0;
@@ -633,24 +633,24 @@ void EmitStaticProps()
 			}
 			else
 			{
-				build.m_LightmapResolutionX = IntForKey( &entities[i], "lightmapresolutionx" );
-				build.m_LightmapResolutionY = IntForKey( &entities[i], "lightmapresolutiony" );
+				build.m_LightmapResolutionX = IntForKey( &entities[i], (char*)"lightmapresolutionx" );
+				build.m_LightmapResolutionY = IntForKey( &entities[i], (char*)"lightmapresolutiony" );
 			}
 
-			const char *pKey = ValueForKey( &entities[i], "fadescale" );
+			const char *pKey = ValueForKey( &entities[i], (char*)"fadescale" );
 			if ( pKey && pKey[0] )
 			{
-				build.m_flForcedFadeScale = FloatForKey( &entities[i], "fadescale" );
+				build.m_flForcedFadeScale = FloatForKey( &entities[i], (char*)"fadescale" );
 			}
 			else
 			{
 				build.m_flForcedFadeScale = 1;
 			}
 			build.m_FadesOut = (build.m_FadeMaxDist > 0);
-			build.m_pLightingOrigin = ValueForKey( &entities[i], "lightingorigin" );
+			build.m_pLightingOrigin = ValueForKey( &entities[i], (char*)"lightingorigin" );
 			if (build.m_FadesOut)
 			{			  
-				build.m_FadeMinDist = FloatForKey( &entities[i], "fademindist" );
+				build.m_FadeMinDist = FloatForKey( &entities[i], (char*)"fademindist" );
 				if (build.m_FadeMinDist < 0)
 				{
 					build.m_FadeMinDist = build.m_FadeMaxDist; 
@@ -660,8 +660,8 @@ void EmitStaticProps()
 			{
 				build.m_FadeMinDist = 0;
 			}
-			build.m_nMinDXLevel = (unsigned short)IntForKey( &entities[i], "mindxlevel" );
-			build.m_nMaxDXLevel = (unsigned short)IntForKey( &entities[i], "maxdxlevel" );
+			build.m_nMinDXLevel = (unsigned short)IntForKey( &entities[i], (char*)"mindxlevel" );
+			build.m_nMaxDXLevel = (unsigned short)IntForKey( &entities[i], (char*)"maxdxlevel" );
 			AddStaticPropToLump( build );
 
 			// strip this ent from the .bsp file

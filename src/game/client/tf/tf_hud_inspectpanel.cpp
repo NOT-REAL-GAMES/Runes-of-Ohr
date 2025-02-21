@@ -173,7 +173,7 @@ void CHudInspectPanel::UserCmd_InspectTarget( void )
 			{
 				if ( !GetClientModeTFNormal()->BIsFriendOrPartyMember( pTargetPlayer ) )
 				{
-					internalCenterPrint->Print( "#TF_Invalid_Inspect_Target" );
+					internalCenterPrint->Print( (char*)"#TF_Invalid_Inspect_Target" );
 					return;
 				}
 				

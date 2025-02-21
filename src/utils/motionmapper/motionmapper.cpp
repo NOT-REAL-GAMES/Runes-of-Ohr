@@ -2235,7 +2235,7 @@ s_template_t *Load_Template(char *name )
 		int numOptions = numSplit - 1;
 		
 		cmd = sp[0];
-		if(checkCommand(cmd, "twoJointIKSolve", 1, numOptions))
+		if(checkCommand(cmd, (char*)"twoJointIKSolve", 1, numOptions))
 		{
 			printf("\nCreating two joint IK solve %s\n", sp[1]);
 			pTemplate->ikSolves[pTemplate->numIKSolves] = New_IKSolve();
@@ -2243,7 +2243,7 @@ s_template_t *Load_Template(char *name )
 			pTemplate->numIKSolves++;
 			
 		}
-		else if(checkCommand(cmd, "oneJointPlaneConstraint", 1, numOptions))
+		else if(checkCommand(cmd, (char*)"oneJointPlaneConstraint", 1, numOptions))
 		{
 			printf("\nCreating one joint plane constraint %s\n", sp[1]);
 			pTemplate->planeConstraints[pTemplate->numPlaneConstraints] = New_planeConstraint(pTemplate->toeFloorZ);
@@ -2251,29 +2251,29 @@ s_template_t *Load_Template(char *name )
 			pTemplate->numPlaneConstraints++;
 
 		}
-		else if(checkCommand(cmd, "reverseSolve", 1, numOptions)) 
+		else if(checkCommand(cmd, (char*)"reverseSolve", 1, numOptions))
 		{
 			printf("reverseSolve: %s\n", sp[1]);
 			pTemplate->ikSolves[pTemplate->numIKSolves - 1]->reverseSolve = atoi(sp[1]);
 		}
-		else if(checkCommand(cmd, "extremityScale", 1, numOptions)) 
+		else if(checkCommand(cmd, (char*)"extremityScale", 1, numOptions))
 		{
 			printf("extremityScale: %s\n", sp[1]);
 			pTemplate->ikSolves[pTemplate->numIKSolves - 1]->extremityScale = atof(sp[1]);
 		}
-		else if(checkCommand(cmd, "limbRootOffsetScale", 3, numOptions)) 
+		else if(checkCommand(cmd, (char*)"limbRootOffsetScale", 3, numOptions))
 		{
 			printf("limbRootOffsetScale: %s %s %s\n", sp[1], sp[2], sp[3]);
 			pTemplate->ikSolves[pTemplate->numIKSolves - 1]->limbRootOffsetScale[0] = atof(sp[1]);
 			pTemplate->ikSolves[pTemplate->numIKSolves - 1]->limbRootOffsetScale[1] = atof(sp[2]);
 			pTemplate->ikSolves[pTemplate->numIKSolves - 1]->limbRootOffsetScale[2] = atof(sp[3]);
 		}
-		else if(checkCommand(cmd, "toeFloorZ", 1, numOptions))
+		else if(checkCommand(cmd, (char*)"toeFloorZ", 1, numOptions))
 		{
 			printf("toeFloorZ: %s\n", sp[1]);
 			pTemplate->toeFloorZ = atof(sp[1]);
 		}
-		else if(checkCommand(cmd, "relativeLock", 2, numOptions)) 
+		else if(checkCommand(cmd, (char*)"relativeLock", 2, numOptions))
 		{
 			printf("relativeLock: %s\n", sp[1]);
 			pTemplate->ikSolves[pTemplate->numIKSolves - 1]->doRelativeLock = 1;
@@ -2281,17 +2281,17 @@ s_template_t *Load_Template(char *name )
 			pTemplate->ikSolves[pTemplate->numIKSolves - 1]->relativeLockScale = atof(sp[2]);
 
 		}
-		else if(checkCommand(cmd, "rootScaleJoint", 1, numOptions)) 
+		else if(checkCommand(cmd, (char*)"rootScaleJoint", 1, numOptions))
 		{
 			printf("\nrootScaleJoint: %s\n", sp[1]);
 			strcpy(pTemplate->rootScaleJoint, sp[1]);
 		}
-		else if(checkCommand(cmd, "rootScaleAmount", 1, numOptions)) 
+		else if(checkCommand(cmd, (char*)"rootScaleAmount", 1, numOptions))
 		{
 			printf("rootScaleAmount: %s\n", sp[1]);
 			pTemplate->rootScaleAmount = atof(sp[1]);
 		}
-		else if(checkCommand(cmd, "jointScale", 2, numOptions))
+		else if(checkCommand(cmd, (char*)"jointScale", 2, numOptions))
 		{
 			printf("\nCreating joint scale %s of %s\n", sp[1], sp[2]);
 			pTemplate->jointScales[pTemplate->numJointScales] = (s_jointScale_t *)kalloc(1, sizeof(s_jointScale_t));
@@ -2299,7 +2299,7 @@ s_template_t *Load_Template(char *name )
 			pTemplate->jointScales[pTemplate->numJointScales]->scale = atof(sp[2]);
 			pTemplate->numJointScales++;
 		}
-		else if(checkCommand(cmd, "skeletonScale", 2, numOptions))
+		else if(checkCommand(cmd, (char*)"skeletonScale", 2, numOptions))
 		{
 			printf("\nCreating skeleton scale of %s\n", sp[1]);
 			pTemplate->doSkeletonScale = 1;

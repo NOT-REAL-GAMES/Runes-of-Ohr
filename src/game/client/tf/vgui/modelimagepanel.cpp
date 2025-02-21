@@ -127,7 +127,7 @@ void CModelImagePanel::Paint()
 	}
 	
 	// can't find available cache render target, don't do anything
-	if ( s_hModelImageLockPanel && s_hModelImageLockPanel != this )
+	if ( s_hModelImageLockPanel && s_hModelImageLockPanel.Get() != this )
 	{
 		BaseClass::Paint();
 		return;

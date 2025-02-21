@@ -1579,7 +1579,7 @@ void CTFHudPasstimeBallStatus::OnBallGetOther( int iPlayer )
 	wchar_t *pwszFormatString = g_pVGuiLocalize->Find( "#TF_Passtime_CarrierName" );
 	if ( !pwszFormatString )
 	{
-		pwszFormatString = L"%s1";
+		pwszFormatString = (wchar_t*)L"%s1";
 	}
 	g_pVGuiLocalize->ConvertANSIToUnicode( ( iPlayer > 0 ) ? g_PR->GetPlayerName( iPlayer ) : "", wszPlayerName, sizeof( wszPlayerName ) );
 	g_pVGuiLocalize->ConstructString_safe( wszFinalText, pwszFormatString, 1, wszPlayerName );
@@ -1602,7 +1602,7 @@ void CTFHudPasstimeBallStatus::OnBallGetSelf( int iPlayer )
 	wchar_t *pwszFormatString = g_pVGuiLocalize->Find( "#TF_Passtime_CarrierName" );
 	if ( !pwszFormatString )
 	{
-		pwszFormatString = L"%s1";
+		pwszFormatString = (wchar_t*)L"%s1";
 	}
 	g_pVGuiLocalize->ConvertANSIToUnicode( ( iPlayer > 0 ) ? g_PR->GetPlayerName( iPlayer ) : "", wszPlayerName, sizeof( wszPlayerName ) );
 	g_pVGuiLocalize->ConstructString_safe( wszFinalText, pwszFormatString, 1, wszPlayerName );

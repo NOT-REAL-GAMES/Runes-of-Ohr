@@ -1238,7 +1238,7 @@ char *UTIL_GetFilteredPlayerName( const CSteamID &steamID, char *pszName )
 {
 	if ( !pszName )
 	{
-		pszName = "";
+		pszName = (char*)"";
 	}
 
 	if ( SteamUtils() )
@@ -1307,7 +1307,7 @@ char* ReadAndAllocStringValue( KeyValues *pSub, const char *pName, const char *p
 		{
 			DevWarning( "Can't get key value	'%s' from file '%s'.\n", pName, pFilename );
 		}
-		return "";
+		return (char*)"";
 	}
 
 	int len = Q_strlen( pValue ) + 1;
